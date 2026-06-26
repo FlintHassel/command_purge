@@ -303,13 +303,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 487446200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28c95061c997fe541940add1f1a32806, type: 3}
+  m_Script: {fileID: 11500000, guid: d814fc4e2e2ab0d46a1283ee814e2c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FPSMovement
-  walkSpeed: 3
-  gravity: -12
-  cameraTransform: {fileID: 0}
-  moveAction: {fileID: 2209845521853263884, guid: 9b229b9f1f9e12341a1130059ec15f63, type: 3}
 --- !u!114 &487446204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 5436ab0e7a3f40e41a04fc19ae98c09d, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 9b229b9f1f9e12341a1130059ec15f63, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -339,7 +335,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 588531442}
 --- !u!114 &487446205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e339d8ddfa59cca4bba3e18781934279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FPSMovement
-  walkSpeed: 3
+  walkSpeed: 5
   gravity: -9.81
   cameraTransform: {fileID: 2081891601}
   moveAction: {fileID: 2209845521853263884, guid: 9b229b9f1f9e12341a1130059ec15f63, type: 3}
