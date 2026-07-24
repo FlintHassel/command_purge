@@ -19,6 +19,7 @@ public class OpeningSequence : MonoBehaviour
     public float lineDelay       = 0.3f;
     public float frameDuration   = 3.5f;
     public float storyFrameDelay = 10f;  // jeda antar frame story (15-20s biar player baca)
+    public float storyTransitionDelay = 3f; // jeda layar hitam/kosong antar frame story
 
     private string playerName = "";
     private bool   waitingForInput = false;
@@ -196,6 +197,7 @@ public class OpeningSequence : MonoBehaviour
         yield return StartCoroutine(terminalController.RevealLinesStaggered(storyText, SystemBootLines));
         yield return new WaitForSeconds(frameDuration);
         storyText.text = "";
+        yield return new WaitForSeconds(storyTransitionDelay);
     }
 
     // ══════════════════════════════════════════════════════════════════
@@ -206,6 +208,7 @@ public class OpeningSequence : MonoBehaviour
         yield return StartCoroutine(terminalController.RevealLinesStaggered(storyText, OpeningLines));
         yield return new WaitForSeconds(storyFrameDelay);
         storyText.text = "";
+        yield return new WaitForSeconds(storyTransitionDelay);
     }
 
     // ══════════════════════════════════════════════════════════════════
@@ -225,6 +228,7 @@ public class OpeningSequence : MonoBehaviour
         }));
         yield return new WaitForSeconds(storyFrameDelay);
         storyText.text = "";
+        yield return new WaitForSeconds(storyTransitionDelay);
     }
 
     // ══════════════════════════════════════════════════════════════════
@@ -252,6 +256,7 @@ public class OpeningSequence : MonoBehaviour
         yield return StartCoroutine(terminalController.RevealLinesStaggered(storyText, new string[] { "Baik, kita mulai." }));
         yield return new WaitForSeconds(storyFrameDelay);
         storyText.text = "";
+        yield return new WaitForSeconds(storyTransitionDelay);
     }
 
     // ══════════════════════════════════════════════════════════════════

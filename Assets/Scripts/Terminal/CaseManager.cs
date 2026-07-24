@@ -151,6 +151,7 @@ public class CaseManager : MonoBehaviour
         currentState = InvestState.MainMenu;
 
         terminalController.HideAllTutorialPanels();
+        terminalController.SetLiveIndicatorActive(true);
         terminalController.AddLine(">>> MEMBUKA KASUS #" + currentCase.caseNumber + " <<<", TerminalLineType.System);
         terminalController.AddLine("SUBJEK: " + currentSubject.fullNameString, TerminalLineType.Response);
         ShowMainPanel();
@@ -520,6 +521,7 @@ public class CaseManager : MonoBehaviour
     private IEnumerator DeniedExitRoutine()
     {
         yield return new WaitForSeconds(1.5f);
+        terminalController.SetLiveIndicatorActive(false);
         OnRequestExitComputer?.Invoke();
         yield return new WaitForSeconds(interCaseDelay);
         gameManager.AdvanceAfterPrint();
@@ -598,6 +600,7 @@ public class CaseManager : MonoBehaviour
         commandProcessor.BlockInput(false);
 
         isCaseActive = false;
+        terminalController.SetLiveIndicatorActive(false);
 
         // Langsung keluar komputer, diam-diam (gak ada kata-kata terakhir).
         OnRequestExitComputer?.Invoke();
