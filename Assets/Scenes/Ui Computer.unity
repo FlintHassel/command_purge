@@ -4457,6 +4457,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2613931838437758933, guid: 4b6e41edb78e5db45bb4146643bb4b8e, type: 3}
+      propertyPath: glitchDuration
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2613931838437758933, guid: 4b6e41edb78e5db45bb4146643bb4b8e, type: 3}
       propertyPath: revealTingClip
       value: 
       objectReference: {fileID: 8300000, guid: c04631c7973ef3344a1d181c9ce94622, type: 3}
@@ -4496,6 +4500,10 @@ PrefabInstance:
       propertyPath: traitsItemPrefab
       value: 
       objectReference: {fileID: 1371798705145847640, guid: c62c9338c79cb2341abe6e8ad737d5da, type: 3}
+    - target: {fileID: 2613931838437758933, guid: 4b6e41edb78e5db45bb4146643bb4b8e, type: 3}
+      propertyPath: glitchPhotoSprite
+      value: 
+      objectReference: {fileID: -1105411352, guid: e412058ac6160cf45882ad788bf7df95, type: 3}
     - target: {fileID: 2613931838437758933, guid: 4b6e41edb78e5db45bb4146643bb4b8e, type: 3}
       propertyPath: traitsPanelObject
       value: 

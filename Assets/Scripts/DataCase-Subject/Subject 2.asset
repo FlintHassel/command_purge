@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58efca9d2e509714fbe1366be6287971, type: 3}
+  m_Name: Subject 2
+  m_EditorClassIdentifier: Assembly-CSharp::SubjectDefinition
+  subjectId: D-003
+  fullName: Nazarayo
+  gender: Male
+  dateOfBirth: 1/1/2001
+  expiryDate: 9/12/2004
+  isMimic: 0
+  subjectPhoto: {fileID: 2090144673, guid: 814b08f5930bd2344a298309a8356e8b, type: 3}
+  photoFrames:
+  - {fileID: 407791558, guid: 5b4f6f6b715cf2240ae520f6d4e326f8, type: 3}
+  - {fileID: -1111117622, guid: 4db2d0ab8dfc5bc4ca98d8a54f24f27b, type: 3}
+  - {fileID: -2073699257, guid: 428d8aa7242222040949a10157605a76, type: 3}
+  - {fileID: 1633962352, guid: 4f2a691317b1e6f4096477e49dc5049e, type: 3}
