@@ -61,6 +61,8 @@ public class TerminalController : MonoBehaviour
     [SerializeField] private GameObject inspectRightArrowObject;
     [Tooltip("Sprite foto aneh/glitch buat efek visual kasus Climax saat rotate.")]
     [SerializeField] private Sprite     glitchPhotoSprite;
+    [Tooltip("Durasi efek glitch (detik) saat memutar foto.")]
+    [SerializeField] private float      glitchDuration = 0.25f;
 
     [Header("Battery UI — fill image di AskInfoCheck Panel")]
     [Tooltip("Assign Battery_Fill Image dari Hierarchy. Fill Method: Horizontal, Fill Origin: Left.")]
@@ -113,6 +115,9 @@ public class TerminalController : MonoBehaviour
     [SerializeField] private GameObject verdictPanelObject;
     [SerializeField] private TMP_Text   verdictTextComponent;
 
+    [Header("Live Indicator UI")]
+    [SerializeField] private GameObject liveIndicatorObject;
+
     [Header("Staggered Reveal — buat boot text & list dinamis (traits/ask)")]
     [Tooltip("Opsional. Kalau kosong, reveal tetap jalan tanpa suara.")]
     [SerializeField] private AudioSource sfxAudioSourceComponent;
@@ -140,6 +145,7 @@ public class TerminalController : MonoBehaviour
 
     private CommandProcessorService commandProcessorService;
     private List<GameObject> activeLineGameObjectList = new List<GameObject>();
+    private bool isLiveActive = false;
 
     private void Awake()
     {
@@ -293,6 +299,7 @@ public class TerminalController : MonoBehaviour
         if (askQuestionListPanelObject != null) askQuestionListPanelObject.SetActive(false);
         if (traitsPanelObject         != null) traitsPanelObject.SetActive(false);
         if (verdictPanelObject        != null) verdictPanelObject.SetActive(false);
+        if (liveIndicatorObject        != null) liveIndicatorObject.SetActive(isLiveActive);
         
         SetBatteryVisibility(false);
     }
@@ -626,10 +633,10 @@ public class TerminalController : MonoBehaviour
             askInfoCheckTitleText.text = "INVESTIGASI SUBJEK";
         if (askInfoCheckActionsText != null)
             askInfoCheckActionsText.text =
-                "<b><color=#FFE066>[ask]</color></b> Pertanyakan      " +
-                "<b><color=#FFE066>[info]</color></b> Biodata      " +
-                "<b><color=#FFE066>[check]</color></b> Inspeksi Foto      " +
-                "<b><color=#FFE066>[traits]</color></b> Anomali";
+                "<b><color=#FFE066>[ask]</color></b> to ask question      " +
+                "<b><color=#FFE066>[info]</color></b> to see identity      " +
+                "<b><color=#FFE066>[check]</color></b> to inspeck photos   " +
+                "<b><color=#FFE066>[traits]</color></b> to see qriteria of anomalies";
         if (askInfoCheckVerdictText != null)
             askInfoCheckVerdictText.text = "<b>APPROVED</b>      <b>DENIED</b>";
         if (askInfoCheckHintText != null)
@@ -898,6 +905,15 @@ public class TerminalController : MonoBehaviour
         }
     }
 
+    public void SetLiveIndicatorActive(bool active)
+    {
+        isLiveActive = active;
+        if (liveIndicatorObject != null)
+        {
+            liveIndicatorObject.SetActive(active);
+        }
+    }
+
     private List<Image> spawnedBatteryBars = new List<Image>();
 
     public void UpdateBatteryFill(int current, int max)
@@ -1004,7 +1020,7 @@ public class TerminalController : MonoBehaviour
         if (glitchPhotoSprite != null && inspectPhotoImageComponent != null)
         {
             inspectPhotoImageComponent.sprite = glitchPhotoSprite;
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(glitchDuration);
 
             // Kembali ke foto asli
             if (originalFrames != null && originalIndex < originalFrames.Length)
