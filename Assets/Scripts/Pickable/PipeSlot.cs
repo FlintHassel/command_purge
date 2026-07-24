@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider), typeof(AudioSource))]
 public class PipeSlot : MonoBehaviour, IInteractable
 {
     [Header("Slot Settings")]
@@ -25,8 +25,13 @@ public class PipeSlot : MonoBehaviour, IInteractable
     public Color storeFlashColor = Color.green;
     [Range(1f, 8f)] public float storeFlashIntensity = 4f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip storeSound;
+    [SerializeField] [Range(0f, 1f)] private float storeSoundVolume = 0.8f;
+
     private Renderer[] renderers;
     private MaterialPropertyBlock propBlock;
+    private AudioSource audioSource;
     private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
 
     private float lastLookedTime = -10f;
@@ -38,6 +43,8 @@ public class PipeSlot : MonoBehaviour, IInteractable
     {
         renderers = GetComponentsInChildren<Renderer>();
         propBlock = new MaterialPropertyBlock();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
         ApplyGlow(idleGlowColor * idleIntensity);
     }
 
@@ -103,6 +110,11 @@ public class PipeSlot : MonoBehaviour, IInteractable
 
         Debug.Log($"{acceptedItemName} successfully stored in pipe!");
         isAnimating = true;
+
+        // Play store sound
+        if (audioSource != null && storeSound != null)
+            audioSource.PlayOneShot(storeSound, storeSoundVolume);
+
         StartCoroutine(StoreAnimation(held.gameObject));
     }
 

@@ -174,6 +174,78 @@ Transform:
   - {fileID: 554799311}
   m_Father: {fileID: 7740830166268865028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &389276775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+  m_PrefabInstance: {fileID: 2131082575}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &389276780
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389276775}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.42999634, y: 0.43000314, z: 0.26000008}
+  m_Center: {x: -0.08500177, y: 0.21500139, z: -0.0000000041909742}
+--- !u!114 &389276781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389276775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 832153311f354094fa29e82d55b91634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PipeSlot
+  acceptedItemName: Kertas
+  idleGlowColor: {r: 0.2, g: 0.6, b: 1, a: 1}
+  idleIntensity: 0.4
+  activeGlowColor: {r: 0, g: 1, b: 0, a: 1}
+  activeIntensity: 3
+  rejectGlowColor: {r: 1, g: 0, b: 0, a: 1}
+  rejectIntensity: 2
+  storeAnimDuration: 0.3
+  storeScaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  storeFlashColor: {r: 0, g: 1, b: 0, a: 1}
+  storeFlashIntensity: 4
 --- !u!4 &452730233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8200823352345320013, guid: 336b47dbaa0fc6444bc7554122d6f6ee, type: 3}
@@ -1462,57 +1534,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3465377741653353336, guid: 336b47dbaa0fc6444bc7554122d6f6ee, type: 3}
   m_PrefabInstance: {fileID: 2597832289427952631}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2032821200 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3548863161261978183, guid: 336b47dbaa0fc6444bc7554122d6f6ee, type: 3}
-  m_PrefabInstance: {fileID: 2597832289427952631}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2032821205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032821200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 832153311f354094fa29e82d55b91634, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PipeSlot
-  acceptedItemName: Kertas
-  idleGlowColor: {r: 0.2, g: 0.6, b: 1, a: 1}
-  idleIntensity: 0.4
-  activeGlowColor: {r: 0, g: 1, b: 0, a: 1}
-  activeIntensity: 3
-  rejectGlowColor: {r: 1, g: 0, b: 0, a: 1}
-  rejectIntensity: 2
-  storeAnimDuration: 0.3
-  storeScaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  storeFlashColor: {r: 0, g: 1, b: 0, a: 1}
-  storeFlashIntensity: 4
 --- !u!1 &2075724158 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3234623161919211686, guid: 336b47dbaa0fc6444bc7554122d6f6ee, type: 3}
@@ -1531,6 +1552,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SurfaceDefinition
   surfaceType: 1
+--- !u!1001 &2131082575
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.7521268
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.152366
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.3498379
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.56183743
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.35291767
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6581755
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.35579893
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -4.117
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 96.649
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -299.934
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_Name
+      value: pipe_1_corner
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 389276780}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 389276781}
+  m_SourcePrefab: {fileID: 100100000, guid: 45916b5caa3b3e94da5704c33b870861, type: 3}
 --- !u!1001 &2597832289427952631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1633,7 +1721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3548863161261978183, guid: 336b47dbaa0fc6444bc7554122d6f6ee, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3678055391297064802, guid: 336b47dbaa0fc6444bc7554122d6f6ee, type: 3}
       propertyPath: m_sharedMaterial
@@ -1800,9 +1888,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4553224583308261355, guid: 336b47dbaa0fc6444bc7554122d6f6ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 14429294}
-    - targetCorrespondingSourceObject: {fileID: 3548863161261978183, guid: 336b47dbaa0fc6444bc7554122d6f6ee, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2032821205}
     - targetCorrespondingSourceObject: {fileID: 3234623161919211686, guid: 336b47dbaa0fc6444bc7554122d6f6ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2075724162}
@@ -1910,3 +1995,4 @@ SceneRoots:
   - {fileID: 1601148424}
   - {fileID: 1712840800}
   - {fileID: 1120002738}
+  - {fileID: 2131082575}

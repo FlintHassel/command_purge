@@ -22,6 +22,7 @@ public class PlayerInteract : MonoBehaviour
 
     private GameObject inHandItem;
     private Highlight currentHighlight;
+    private PickableItem currentPickable;
 
     void Awake()
     {
@@ -35,6 +36,17 @@ public class PlayerInteract : MonoBehaviour
         if (pickableLayer == 0)
             pickableLayer = LayerMask.GetMask("Pickable");
 
+        // Auto-find UI references jika tidak di-assign di Inspector
+        if (interactionPanel == null)
+        {
+            GameObject panel = GameObject.Find("InteractionUIPanel");
+            if (panel != null)
+            {
+                interactionPanel = panel;
+                if (interactionText == null)
+                    interactionText = panel.GetComponentInChildren<TextMeshProUGUI>();
+            }
+        }
     }
 
     void Update()
@@ -43,9 +55,12 @@ public class PlayerInteract : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (inHandItem == null && currentHighlight != null)
+            if (inHandItem == null)
             {
-                TryPickUp(currentHighlight.gameObject);
+                if (currentHighlight != null)
+                    TryPickUp(currentHighlight.gameObject);
+                else if (currentPickable != null)
+                    TryPickUp(currentPickable.gameObject);
             }
         }
     }
@@ -57,6 +72,7 @@ public class PlayerInteract : MonoBehaviour
             currentHighlight.ToggleHighlight(false);
             currentHighlight = null;
         }
+        currentPickable = null;
 
         if (inHandItem != null)
         {
@@ -66,6 +82,7 @@ public class PlayerInteract : MonoBehaviour
 
         if (playerCamera == null) return;
 
+        // 1. Raycast layer Pickable (layer 8) untuk object Highlight
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hit, hitRange, pickableLayer, QueryTriggerInteraction.Collide))
         {
             Highlight highlight = hit.collider.GetComponent<Highlight>();
@@ -74,16 +91,41 @@ public class PlayerInteract : MonoBehaviour
                 highlight.ToggleHighlight(true);
                 currentHighlight = highlight;
                 ShowInteractionUI("Press [E] to pick up the paper");
+                return;
             }
-            else
+
+            PickableItem pickable = hit.collider.GetComponent<PickableItem>();
+            if (pickable != null && pickable.enabled)
             {
-                HideInteractionUI();
+                currentPickable = pickable;
+                string prompt = pickable.GetInteractText();
+                if (!string.IsNullOrEmpty(prompt))
+                    ShowInteractionUI(prompt);
+                else
+                    HideInteractionUI();
+                return;
             }
         }
-        else
+
+        // 2. Juga raycast layer Interactable (layer 6) — tapi hanya untuk PickableItem (kertas)
+        LayerMask interactableLayer = 1 << 6;
+        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hit2, hitRange, interactableLayer, QueryTriggerInteraction.Collide))
         {
-            HideInteractionUI();
+            PickableItem pickable = hit2.collider.GetComponent<PickableItem>();
+            if (pickable != null && pickable.enabled)
+            {
+                currentPickable = pickable;
+                string prompt = pickable.GetInteractText();
+                if (!string.IsNullOrEmpty(prompt))
+                    ShowInteractionUI(prompt);
+                else
+                    HideInteractionUI();
+                return;
+            }
         }
+
+        // Tidak ada yang terdeteksi
+        HideInteractionUI();
     }
 
     private void ShowInteractionUI(string text)
@@ -100,7 +142,8 @@ public class PlayerInteract : MonoBehaviour
 
     private void TryPickUp(GameObject item)
     {
-        if (item.GetComponent<PaperItem>() != null)
+        // Dukung baik PaperItem maupun PickableItem
+        if (item.GetComponent<PaperItem>() != null || item.GetComponent<PickableItem>() != null)
         {
             inHandItem = item;
 
@@ -160,6 +203,7 @@ public class PlayerInteract : MonoBehaviour
                 currentHighlight.ToggleHighlight(false);
                 currentHighlight = null;
             }
+            currentPickable = null;
         }
     }
 }
