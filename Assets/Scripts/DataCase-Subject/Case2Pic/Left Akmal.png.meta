@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 814b08f5930bd2344a298309a8356e8b
+guid: 5f38dee19a5511a4cae6cbc0b125a53a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: depan_0
+      name: Left Akmal_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 1
         width: 255
-        height: 340
+        height: 341
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cce53a364b9b6714c9af66115ed72c8b
-      internalID: 2090144673
+      spriteID: 982888703e32bff4899342adc68440de
+      internalID: 1678907682
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 912f5a1479b97d24a9b26d5925cdc96c
+    spriteID: d0b3de8fb47bf89489c212db90da0997
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      depan_0: 2090144673
+      Left Akmal_0: 1678907682
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

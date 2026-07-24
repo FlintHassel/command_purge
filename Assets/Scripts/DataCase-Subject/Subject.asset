@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58efca9d2e509714fbe1366be6287971, type: 3}
-  m_Name: Subject1
+  m_Name: Subject
   m_EditorClassIdentifier: Assembly-CSharp::SubjectDefinition
-  subjectId: D-002
-  fullName: HaiRoi
+  subjectId: D-001
+  fullName: DikDuko
   gender: Male
   dateOfBirth: 19/01/1982
   expiryDate: 7/17/2000
   isMimic: 0
   subjectPhoto: {fileID: 2090144673, guid: 814b08f5930bd2344a298309a8356e8b, type: 3}
   photoFrames:
-  - {fileID: 2090144673, guid: 814b08f5930bd2344a298309a8356e8b, type: 3}
-  - {fileID: -371207200, guid: 0006fcec89535104eb521c49154f5a23, type: 3}
-  - {fileID: -1875535332, guid: bc5f5c6603f15874198dbb55c3d7c509, type: 3}
-  - {fileID: 2125644422, guid: cc35dc61c70bf5b4bbd7476569ebf7a5, type: 3}
+  - {fileID: 618981011, guid: e6a709128ebd32e4291cb35939b7fb9e, type: 3}
+  - {fileID: 473285779, guid: 0dd27fc1dc701ff4cb70767e76fc4190, type: 3}
+  - {fileID: -1175474300, guid: 327b9da593956414983c2dd5391d884a, type: 3}
+  - {fileID: 638202056, guid: 326ac8299fccd114c8408dcaa228a0e5, type: 3}

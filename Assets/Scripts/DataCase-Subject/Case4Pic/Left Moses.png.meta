@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bc5f5c6603f15874198dbb55c3d7c509
+guid: 146f900bc7fc2694781c852387a1db6a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Kanan_0
+      name: Left Moses_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 14
-        width: 416
-        height: 553
+        x: 0
+        y: 0
+        width: 255
+        height: 342
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e3aa1a2e77d3a44b87db7a3f29163e3
-      internalID: -1875535332
+      spriteID: 4b2d51e8070d57c4c88ea48d0abeea29
+      internalID: -630035832
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fb8fc0060b7421b4da8c7896902897fd
+    spriteID: 506f97754b59b4d4ca95f9a4270bdadd
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Kanan_0: -1875535332
+      Left Moses_0: -630035832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

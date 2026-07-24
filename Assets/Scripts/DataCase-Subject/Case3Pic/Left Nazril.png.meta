@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 117df6b03ea0b9a4e90d96de95aa9430
+guid: 428d8aa7242222040949a10157605a76
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,8 +37,8 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
   nPOTScale: 0
   lightmap: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -97,11 +97,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: depan_0
+      name: Left Nazril_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 2
         width: 255
         height: 340
       alignment: 0
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cce53a364b9b6714c9af66115ed72c8b
-      internalID: 2090144673
+      spriteID: 0bbb872ed66a5c342bc3c3dd8820b019
+      internalID: -2073699257
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 912f5a1479b97d24a9b26d5925cdc96c
+    spriteID: d392fe9cfa5f03841bb5fa571aab8741
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      depan_0: 2090144673
+      Left Nazril_0: -2073699257
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

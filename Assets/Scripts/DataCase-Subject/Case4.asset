@@ -10,43 +10,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cc221215dcb44748977b0639ef7361c, type: 3}
-  m_Name: Case1
+  m_Name: Case4
   m_EditorClassIdentifier: Assembly-CSharp::CaseDefinition
-  caseNumber: 1
-  caseType: 0
-  subjectId: D-001
+  caseNumber: 4
+  caseType: 2
+  subjectId: D-004
   notificationText: New Case
   maxChances: 5
   questions:
   - questionText: Ask About His Id
-    realResponse: My Id is D-001
-    mimicResponse: 
+    realResponse: 
+    mimicResponse: ID doesnt bother me darling
     commandKeyword: ID
     useTypeTest: 1
     typeTestPrompt: Ask About His Id
     typeTestAnswer: 
   - questionText: Ask About His Name
-    realResponse: My Name Is DikDuko
-    mimicResponse: 
+    realResponse: 
+    mimicResponse: 'I got name for you '
     commandKeyword: Name
     useTypeTest: 1
     typeTestPrompt: Ask About His Name
     typeTestAnswer: 
   - questionText: Ask About His Reason
-    realResponse: I Want to go to safe places
-    mimicResponse: 
+    realResponse: 
+    mimicResponse: Meet someone new to play with
     commandKeyword: Reason
     useTypeTest: 1
     typeTestPrompt: Ask About His Reason
     typeTestAnswer: 
   traits:
-  - -Weird Face
-  - '- Didnt Answer the question
-
-
-'
+  - -Too much reasoning
+  - -Not Answering The Question
   usePrintTypeTest: 1
-  printTypeTestPrompt: Look who's making you warm right now
+  printTypeTestPrompt: YOU WILL KNOW THE CONSEQUENCES
   printTypeTestAnswer: 
-  forceApprovedOnly: 0
-  glitchOnRotate: 0
+  forceApprovedOnly: 1
+  glitchOnRotate: 1

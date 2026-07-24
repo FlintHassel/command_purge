@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc35dc61c70bf5b4bbd7476569ebf7a5
+guid: f0688c80b5e35544eab27e013ae435e8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Kiri_0
+      name: Right Moses_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 8
-        width: 411
-        height: 551
+        x: 0
+        y: 3
+        width: 255
+        height: 339
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a148628869e47a24681dd35ec4a9fee2
-      internalID: 2125644422
+      spriteID: 20247ab5520cd7b4ab870373c7af3342
+      internalID: 1328397705
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0711221276ea998418ac048f357fd95e
+    spriteID: cd533185af8f2d44cba95bb3df00c0ca
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Kiri_0: 2125644422
+      Right Moses_0: 1328397705
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
