@@ -18,23 +18,23 @@ MonoBehaviour:
   notificationText: New Case
   maxChances: 5
   questions:
-  - questionText: Ask About His Id
+  - questionText: what your id
     realResponse: 
-    mimicResponse: ID doesnt bother me darling
+    mimicResponse: .....................................
     commandKeyword: ID
     useTypeTest: 1
     typeTestPrompt: Ask About His Id
     typeTestAnswer: 
   - questionText: Ask About His Name
     realResponse: 
-    mimicResponse: 'I got name for you '
+    mimicResponse: ...........................................................
     commandKeyword: Name
     useTypeTest: 1
     typeTestPrompt: Ask About His Name
     typeTestAnswer: 
-  - questionText: Ask About His Reason
-    realResponse: 
-    mimicResponse: Meet someone new to play with
+  - questionText: why do you come here
+    realResponse: ......................................
+    mimicResponse: ..................................
     commandKeyword: Reason
     useTypeTest: 1
     typeTestPrompt: Ask About His Reason
@@ -43,7 +43,7 @@ MonoBehaviour:
   - -Too much reasoning
   - -Not Answering The Question
   usePrintTypeTest: 1
-  printTypeTestPrompt: YOU WILL KNOW THE CONSEQUENCES
+  printTypeTestPrompt: rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
   printTypeTestAnswer: 
   forceApprovedOnly: 1
   glitchOnRotate: 1

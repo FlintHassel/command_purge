@@ -65,8 +65,8 @@ public class GameManager : MonoBehaviour
         IsTutorialComplete = true;
         CurrentCaseIndex = -1;
 
-        terminalController.AddLine("SISTEM VERIFIKASI AKTIF.", TerminalLineType.Response);
-        terminalController.AddLine("Ketik 'help' untuk melihat daftar perintah.", TerminalLineType.System);
+        terminalController.AddLine("VERIFICATION SYSTEM ACTIVE.", TerminalLineType.Response);
+        terminalController.AddLine("Type 'help' to see the command list.", TerminalLineType.System);
 
         terminalController.inputBlocked = false;
         terminalController.FocusInput();
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
 
         if (CurrentCaseIndex >= caseDefinitions.Length)
         {
-            terminalController.AddLine("Semua kasus selesai. Menunggu perintah...", TerminalLineType.System);
+            terminalController.AddLine("All cases completed. Awaiting commands...", TerminalLineType.System);
             OnAllCasesComplete?.Invoke();
             return;
         }

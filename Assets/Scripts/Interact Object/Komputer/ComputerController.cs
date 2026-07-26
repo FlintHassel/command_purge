@@ -1,4 +1,4 @@
-using UnityEngine;
+tusing UnityEngine;
 using System.Collections;
 
 public class ComputerController : MonoBehaviour, IInteractable
@@ -25,6 +25,12 @@ public class ComputerController : MonoBehaviour, IInteractable
     private Quaternion _computerBaseRotation;
     private float _computerLookYaw;
 
+    [Header("Scene Transition Settings")]
+    [Tooltip("Nama scene UI Komputer yang akan diload. (Harus ada di File -> Build Settings)")]
+    [SerializeField] private string computerSceneName = "Ui Computer";
+    private bool isComputerSceneLoaded = false;
+    private GameObject houseEventSystem;
+
     private void Awake()
     {
         if (crosshairUI == null)
@@ -44,19 +50,28 @@ public class ComputerController : MonoBehaviour, IInteractable
         }
 
         if (isUsing)
-            cameraAnimCoroutine = StartCoroutine(ExitComputerAnimation());
-        else
-            cameraAnimCoroutine = StartCoroutine(EnterComputerAnimation());
+        {
+            // Abaikan Interaksi 'E' jika sedang menggunakan komputer (keluar pakai ESC)
+            return;
+        }
+
+        cameraAnimCoroutine = StartCoroutine(EnterComputerAnimation());
     }
 
     public string GetInteractText()
     {
-        return isUsing ? "Press [E] to Quit" : "Press [E] to Use Computer";
+        return isUsing ? "Press [ESC] to Quit" : "Press [E] to Use Computer";
     }
 
     void Update()
     {
         if (!isUsing) return;
+
+        if (cameraAnimCoroutine == null && Input.GetKeyDown(KeyCode.Escape))
+        {
+            cameraAnimCoroutine = StartCoroutine(ExitComputerAnimation());
+            return;
+        }
 
         float mouseX = Input.GetAxis("Mouse X") * lookSensitivity;
         _computerLookYaw = Mathf.Clamp(_computerLookYaw + mouseX, -maxLookAngle, maxLookAngle);
@@ -95,12 +110,51 @@ public class ComputerController : MonoBehaviour, IInteractable
         _computerBaseRotation = playerCameraTransform.rotation;
         _computerLookYaw = 0f;
 
+        // --- BUKA SCENE KOMPUTER DENGAN AMAN ---
+        if (!isComputerSceneLoaded && !IsSceneLoaded(computerSceneName))
+        {
+            UnityEngine.AsyncOperation op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(computerSceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            if (op != null)
+            {
+                while (!op.isDone) yield return null;
+                isComputerSceneLoaded = true;
+            }
+            else
+            {
+                Debug.LogError($"[ComputerController] GAGAL MEMUAT SCENE! Pastikan scene '{computerSceneName}' sudah ditambahkan ke File -> Build Settings!");
+            }
+        }
+        else if (isComputerSceneLoaded)
+        {
+            SetComputerSceneObjectsActive(true);
+        }
+
+        // Jangan matikan houseEventSystem agar UI di scene Computer bisa tetap di-klik!
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         isUsing = true;
         cameraAnimCoroutine = null;
+
+        if (PlayerStateManager.Instance != null)
+        {
+            PlayerStateManager.Instance.SetState(PlayerState.UsingComputer);
+        }
     }
 
     private IEnumerator ExitComputerAnimation()
     {
+        isUsing = false;
+
+        if (PlayerStateManager.Instance != null)
+        {
+            PlayerStateManager.Instance.SetState(PlayerState.Exploring);
+        }
+
+        // --- PROSES MATIKAN SCENE KOMPUTER ---
+        SetComputerSceneObjectsActive(false);
+
         Vector3 startPos = playerCameraTransform.position;
         Quaternion startRot = playerCameraTransform.rotation;
 
@@ -128,5 +182,24 @@ public class ComputerController : MonoBehaviour, IInteractable
 
         isUsing = false;
         cameraAnimCoroutine = null;
+    }
+
+    private bool IsSceneLoaded(string sceneName)
+    {
+        UnityEngine.SceneManagement.Scene s = UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName);
+        return s.IsValid() && s.isLoaded;
+    }
+
+    private void SetComputerSceneObjectsActive(bool active)
+    {
+        UnityEngine.SceneManagement.Scene s = UnityEngine.SceneManagement.SceneManager.GetSceneByName(computerSceneName);
+        if (s.IsValid() && s.isLoaded)
+        {
+            GameObject[] rootObjects = s.GetRootGameObjects();
+            foreach (GameObject go in rootObjects)
+            {
+                go.SetActive(active);
+            }
+        }
     }
 }

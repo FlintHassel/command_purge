@@ -13,28 +13,30 @@ MonoBehaviour:
   m_Name: Case2
   m_EditorClassIdentifier: Assembly-CSharp::CaseDefinition
   caseNumber: 2
-  caseType: 1
+  caseType: 0
   subjectId: D-002
   notificationText: New Case
   maxChances: 5
   questions:
-  - questionText: Ask About His Id
-    realResponse: 
-    mimicResponse: I dont Know My Id is
+  - questionText: what is your ID number
+    realResponse: i forgot my id
+    mimicResponse: i forgot my id
     commandKeyword: ID
     useTypeTest: 1
     typeTestPrompt: Ask About His Id
     typeTestAnswer: 
-  - questionText: Ask About His Name
-    realResponse: 
+  - questionText: what is your name
+    realResponse: I think it is Sam something
     mimicResponse: I think it is Sam something
     commandKeyword: Name
     useTypeTest: 1
     typeTestPrompt: Ask About His Name
     typeTestAnswer: 
-  - questionText: Ask About His Reason
-    realResponse: 
-    mimicResponse: Im tired of the world
+  - questionText: why do you come here
+    realResponse: i need food and shelter, ive been searching for safe zone for 3
+      weeks
+    mimicResponse: i need food and shelter, ive been searching for safe zone for
+      3 weeks
     commandKeyword: Reason
     useTypeTest: 1
     typeTestPrompt: Ask About His Reason
@@ -43,7 +45,9 @@ MonoBehaviour:
   - -Too much reasoning
   - -Not Answering The Question
   usePrintTypeTest: 1
-  printTypeTestPrompt: Check Yourself before doing it
+  printTypeTestPrompt: point found write until under build carry sound quite change
+    stand later bring found climb thing every being where being might house would
+    catch first
   printTypeTestAnswer: 
   forceApprovedOnly: 0
   glitchOnRotate: 0

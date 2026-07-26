@@ -420,9 +420,9 @@ public class TerminalController : MonoBehaviour
         if (dataPanelObject != null) dataPanelObject.SetActive(true);
 
         if (dataIdTextComponent      != null) dataIdTextComponent.text     = "ID       : " + (subject != null ? subject.subjectIdString    : "---");
-        if (dataNameTextComponent    != null) dataNameTextComponent.text   = "Nama     : " + (subject != null ? subject.fullNameString    : "---");
+        if (dataNameTextComponent    != null) dataNameTextComponent.text   = "Name     : " + (subject != null ? subject.fullNameString    : "---");
         if (dataGenderTextComponent  != null) dataGenderTextComponent.text = "Gender   : " + (subject != null ? subject.genderString      : "---");
-        if (dataDobTextComponent     != null) dataDobTextComponent.text    = "Tgl Lahir: " + (subject != null ? subject.dateOfBirthString : "---");
+        if (dataDobTextComponent     != null) dataDobTextComponent.text    = "DOB      : " + (subject != null ? subject.dateOfBirthString : "---");
         if (dataExpiryTextComponent  != null) dataExpiryTextComponent.text = "Exp Date : " + (subject != null ? subject.expiryDateString : "---");
     }
 
@@ -630,7 +630,7 @@ public class TerminalController : MonoBehaviour
         HideAllTutorialPanels();
         if (askInfoCheckPanelObject != null) askInfoCheckPanelObject.SetActive(true);
         if (askInfoCheckTitleText != null)
-            askInfoCheckTitleText.text = "INVESTIGASI SUBJEK";
+            askInfoCheckTitleText.text = "SUBJECT INVESTIGATION";
         if (askInfoCheckActionsText != null)
             askInfoCheckActionsText.text =
                 "<b><color=#FFE066>[ask]</color></b> to ask question      " +
@@ -640,7 +640,7 @@ public class TerminalController : MonoBehaviour
         if (askInfoCheckVerdictText != null)
             askInfoCheckVerdictText.text = "<b>APPROVED</b>      <b>DENIED</b>";
         if (askInfoCheckHintText != null)
-            askInfoCheckHintText.text = "(ketik perintah di terminal)";
+            askInfoCheckHintText.text = "(type a command in the terminal)";
     }
 
     // BUKA KASUS: foto subjek muncul dulu, baru teks option (ASK INFO CHECK...) barengan.
@@ -653,7 +653,7 @@ public class TerminalController : MonoBehaviour
 
         if (askInfoCheckTitleText != null)
         {
-            askInfoCheckTitleText.text = "INVESTIGASI SUBJEK";
+            askInfoCheckTitleText.text = "SUBJECT INVESTIGATION";
             askInfoCheckTitleText.gameObject.SetActive(false);
         }
         if (askInfoCheckActionsText != null)
@@ -672,7 +672,7 @@ public class TerminalController : MonoBehaviour
         }
         if (askInfoCheckHintText != null)
         {
-            askInfoCheckHintText.text = "(ketik perintah di terminal)";
+            askInfoCheckHintText.text = "(type a command in the terminal)";
             askInfoCheckHintText.gameObject.SetActive(false);
         }
 
@@ -761,7 +761,7 @@ public class TerminalController : MonoBehaviour
         if (askQuestionListPanelObject != null) askQuestionListPanelObject.SetActive(true);
 
         if (askQuestionListTitleText != null)
-            askQuestionListTitleText.text = "JAWABAN SUBJEK";
+            askQuestionListTitleText.text = "SUBJECT ANSWERS";
 
         SetAskQuestionResponse(responseText);
 
@@ -878,14 +878,14 @@ public class TerminalController : MonoBehaviour
             if (approved)
             {
                 verdictTextComponent.text =
-                    "KEPUTUSAN DITERIMA: <color=#55FF55>APPROVED</color>\n\n" +
-                    "<size=80%><color=#88FF88>(Ketik 'print' di terminal untuk mencetak dokumen keputusan)</color></size>";
+                    "DECISION RECEIVED: <color=#55FF55>APPROVED</color>\n\n" +
+                    "<size=80%><color=#88FF88>(Type 'print' in the terminal to print the decision document)</color></size>";
             }
             else
             {
                 verdictTextComponent.text =
-                    "KEPUTUSAN DITERIMA: <color=#FF5555>DENIED</color>\n\n" +
-                    "<size=80%><color=#FF9999>Subjek akan dikembalikan.\nKetik 'confirm' untuk memastikan keputusan.</color></size>";
+                    "DECISION RECEIVED: <color=#FF5555>DENIED</color>\n\n" +
+                    "<size=80%><color=#FF9999>Subject will be returned.\nType 'confirm' to confirm the decision.</color></size>";
             }
         }
     }
@@ -1000,15 +1000,15 @@ public class TerminalController : MonoBehaviour
         if (forceApproveOnly)
         {
             askInfoCheckActionsText.text =
-                "<color=#FF5555>SISTEM: Penolakan tidak diizinkan oleh otoritas pusat.</color>\n\n" +
-                "<color=#FFFF55>[approved]</color>  — setujui subjek";
+                "<color=#FF5555>SYSTEM: Rejection is not permitted by central authority.</color>\n\n" +
+                "<color=#FFFF55>[approved]</color>  — approve subject";
         }
         else
         {
             askInfoCheckActionsText.text =
-                "<color=#FF5555>Kesempatan investigasi habis. Ambil keputusan:</color>\n\n" +
-                "<color=#55FF55>[approved]</color>  — izinkan masuk\n" +
-                "<color=#FF5555>[denied]</color>    — tolak & kembalikan";
+                "<color=#FF5555>Investigation attempts exhausted. Make a decision:</color>\n\n" +
+                "<color=#55FF55>[approved]</color>  — allow entry\n" +
+                "<color=#FF5555>[denied]</color>    — reject & return";
         }
     }
 

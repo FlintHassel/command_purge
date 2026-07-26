@@ -41,35 +41,35 @@ public class OpeningSequence : MonoBehaviour
     private static readonly string[] SystemBootLines = new string[]
     {
         "SYSTEM BOOTING...",
-        "memuat modul verifikasi ALPHA-SECTOR...",
-        "menyinkronkan basis data subjek...",
+        "Loading ALPHA-SECTOR verification module...",
+        "Synchronizing subject database...",
         "OK.",
     };
 
     private static readonly string[] OpeningLines = new string[]
     {
-        "[ SISTEM ALPHA-SECTOR v2.1 ]",
-        "Anda adalah Verifier yang bertugas mengidentifikasi",
-        "warga asli dari ancaman Anomali.",
+        "[ ALPHA-SECTOR SYSTEM v2.1 ]",
+        "You are a Verifier tasked with identifying",
+        "true citizens from Anomaly threats.",
         "",
-        "Setiap warga yang mencurigakan harus diperiksa",
-        "data dirinya sebelum mendapat dokumen resmi.",
+        "Every suspicious citizen must have their",
+        "personal data examined before receiving official documents.",
         "",
-        "Tugas pertama Anda akan menuntun langkah",
-        "demi langkah. Ikuti instruksi dengan saksama.",
+        "Your first task will guide you step",
+        "by step. Follow the instructions carefully.",
     };
 
-    private const string ConfirmQuestionText = "Apakah kamu mendengar suaraku?";
-    private const string FolderInstruction   = "Sekarang, buka folder data untuk memulai.";
-    private const string Select1Instruction  = "Pilih subject dengan mengetik NAMAnya di terminal:";
-    private const string Select2Instruction  = "Konfirmasi pilihanmu. Pilih orang yang SAMA:";
-    private const string PrintInstruction    = "Ketik 'print' untuk mencetak data subject terpilih.";
+    private const string ConfirmQuestionText = "Can you hear my voice?";
+    private const string FolderInstruction   = "Now, open the data folder to begin.";
+    private const string Select1Instruction  = "Select a subject by typing their NAME in the terminal:";
+    private const string Select2Instruction  = "Confirm your selection. Select the EXACT same person:";
+    private const string PrintInstruction    = "Type 'print' to print the selected subject's data.";
 
 
-    private const string Selection1Error = "Nama tidak ditemukan. Coba lagi.";
-    private const string Selection2Wrong = "Bukan orang yang tadi kamu pilih. Mulai dari awal seleksi.";
-    private const string PrintError      = "Ketik 'print' untuk mencetak data.";
-    private const string ConfirmError    = "Ketik 'confirm' untuk melanjutkan.";
+    private const string Selection1Error = "Name not found. Try again.";
+    private const string Selection2Wrong = "Not the person you selected earlier. Start over from the selection.";
+    private const string PrintError      = "Type 'print' to print the data.";
+    private const string ConfirmError    = "Type 'confirm' to proceed.";
 
     // ── SUBJECT IDS ──────────────────────────────────────────────
     private const string TargetSubjectId    = "S-0042";
@@ -80,7 +80,21 @@ public class OpeningSequence : MonoBehaviour
     {
         terminalController = FindFirstObjectByType<TerminalController>();
 
-        GameObject canvasObj = GameObject.Find("Canvas");
+        // Cari Canvas khusus di scene ini agar tidak bentrok dengan Canvas dari scene House
+        GameObject canvasObj = null;
+        foreach (GameObject rootObj in gameObject.scene.GetRootGameObjects())
+        {
+            Canvas c = rootObj.GetComponentInChildren<Canvas>(true);
+            if (c != null && (c.name == "Canvas" || c.name.Contains("Canvas")))
+            {
+                canvasObj = c.gameObject;
+                break;
+            }
+        }
+        
+        // Fallback jika tetap tidak ketemu
+        if (canvasObj == null) canvasObj = GameObject.Find("Canvas");
+
         if (canvasObj != null)
         {
             Transform canvasTransform = canvasObj.transform;
@@ -216,15 +230,15 @@ public class OpeningSequence : MonoBehaviour
     // ══════════════════════════════════════════════════════════════════
     private IEnumerator RunNameInput()
     {
-        yield return StartCoroutine(terminalController.RevealLinesStaggered(storyText, new string[] { "Masukkan nama kamu:" }));
+        yield return StartCoroutine(terminalController.RevealLinesStaggered(storyText, new string[] { "Enter your name:" }));
         yield return StartCoroutine(WaitForInputRaw());
         playerName = pendingInput;
 
         storyText.text = "";
         yield return StartCoroutine(terminalController.RevealLinesStaggered(storyText, new string[]
         {
-            "Identitas terverifikasi.",
-            "Selamat bekerja, Verifier " + playerName + "."
+            "Identity verified.",
+            "Welcome to work, Verifier " + playerName + "."
         }));
         yield return new WaitForSeconds(storyFrameDelay);
         storyText.text = "";
@@ -242,18 +256,18 @@ public class OpeningSequence : MonoBehaviour
         while (true)
         {
             yield return StartCoroutine(WaitForInputRaw());
-            if (pendingInput.ToLower() == "iya") break;
-            if (pendingInput.ToLower() == "tidak")
+            if (pendingInput.ToLower() == "yes") break;
+            if (pendingInput.ToLower() == "no")
             {
-                terminalController.AddLine("Coba dengarkan baik-baik...", TerminalLineType.Warning);
+                terminalController.AddLine("Listen carefully...", TerminalLineType.Warning);
                 continue;
             }
-            terminalController.AddLine("Ketik 'iya' atau 'tidak'.", TerminalLineType.Error);
+            terminalController.AddLine("Type 'yes' or 'no'.", TerminalLineType.Error);
         }
 
         terminalController.HideIyaTidakPanel();
         storyText.text = "";
-        yield return StartCoroutine(terminalController.RevealLinesStaggered(storyText, new string[] { "Baik, kita mulai." }));
+        yield return StartCoroutine(terminalController.RevealLinesStaggered(storyText, new string[] { "Alright, let's begin." }));
         yield return new WaitForSeconds(storyFrameDelay);
         storyText.text = "";
         yield return new WaitForSeconds(storyTransitionDelay);
@@ -273,7 +287,7 @@ public class OpeningSequence : MonoBehaviour
         {
             yield return StartCoroutine(WaitForInputRaw());
             if (pendingInput.ToLower() == "open") break;
-            terminalController.AddLine("Ketik 'open' untuk membuka folder.", TerminalLineType.Error);
+            terminalController.AddLine("Type 'open' to open the folder.", TerminalLineType.Error);
         }
 
         terminalController.HideFolderIcon();
@@ -294,12 +308,12 @@ public class OpeningSequence : MonoBehaviour
 
             if (!_selectionWrong)
             {
-                terminalController.AddLine("Konfirmasi diterima: " + _selectionResult.fullNameString, TerminalLineType.Response);
+                terminalController.AddLine("Confirmation received: " + _selectionResult.fullNameString, TerminalLineType.Response);
                 selectedSubject = _selectionResult;
                 break;
             }
 
-            terminalController.AddLine("Kembali ke seleksi awal...", TerminalLineType.Warning);
+            terminalController.AddLine("Returning to initial selection...", TerminalLineType.Warning);
             yield return new WaitForSeconds(lineDelay);
 
             yield return StartCoroutine(RunSingleSelection(targetSubject, distractor1, Select1Instruction, null));
@@ -346,7 +360,7 @@ public class OpeningSequence : MonoBehaviour
 
         if (!_selectionWrong)
         {
-            terminalController.AddLine("Subject dipilih: " + _selectionResult.fullNameString, TerminalLineType.Response);
+            terminalController.AddLine("Subject selected: " + _selectionResult.fullNameString, TerminalLineType.Response);
             storyText.text = "";
             yield return new WaitForSeconds(lineDelay);
         }
@@ -368,7 +382,7 @@ public class OpeningSequence : MonoBehaviour
 
         storyText.text = "";
         terminalController.ShowDataPanel(selectedSubject);
-        terminalController.AddLine("Ketik 'confirm' untuk mencetak dokumen.", TerminalLineType.System);
+        terminalController.AddLine("Type 'confirm' to print document.", TerminalLineType.System);
 
         while (true)
         {
@@ -380,13 +394,13 @@ public class OpeningSequence : MonoBehaviour
         terminalController.HideDataPanel();
 
         terminalController.ShowTypeTestPanel("typetest");
-        terminalController.AddLine("Ketik 'typetest' untuk lanjut mencetak.", TerminalLineType.Warning);
+        terminalController.AddLine("Type 'typetest' to continue printing.", TerminalLineType.Warning);
 
         while (true)
         {
             yield return StartCoroutine(WaitForInputRaw());
             if (!string.IsNullOrEmpty(pendingInput) && pendingInput.Trim().ToLower() == "typetest") break;
-            terminalController.AddLine("Ketik 'typetest' untuk lanjut.", TerminalLineType.Error);
+            terminalController.AddLine("Type 'typetest' to continue.", TerminalLineType.Error);
         }
 
         terminalController.HideTypeTestPanel();

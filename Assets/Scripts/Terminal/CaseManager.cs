@@ -73,7 +73,7 @@ public class CaseManager : MonoBehaviour
 
         if (currentSubject == null)
         {
-            terminalController.AddLine("ERR: Data subject tidak ditemukan.", TerminalLineType.Error);
+            terminalController.AddLine("ERR: Subject data not found.", TerminalLineType.Error);
             return;
         }
 
@@ -94,7 +94,7 @@ public class CaseManager : MonoBehaviour
         terminalController.AddLine("KASUS #" + currentCase.caseNumber, TerminalLineType.System);
         terminalController.AddLine("===================================", TerminalLineType.System);
         terminalController.AddLine(currentCase.notificationText, TerminalLineType.Warning);
-        terminalController.AddLine("Folder berkedip. Ketik 'open' untuk membuka kasus.", TerminalLineType.System);
+        terminalController.AddLine("Folder is blinking. Type 'open' to open the case.", TerminalLineType.System);
     }
 
     public void ProcessInput(string rawInput, string[] parts)
@@ -152,8 +152,8 @@ public class CaseManager : MonoBehaviour
 
         terminalController.HideAllTutorialPanels();
         terminalController.SetLiveIndicatorActive(true);
-        terminalController.AddLine(">>> MEMBUKA KASUS #" + currentCase.caseNumber + " <<<", TerminalLineType.System);
-        terminalController.AddLine("SUBJEK: " + currentSubject.fullNameString, TerminalLineType.Response);
+        terminalController.AddLine(">>> OPENING CASE #" + currentCase.caseNumber + " <<<", TerminalLineType.System);
+        terminalController.AddLine("SUBJECT: " + currentSubject.fullNameString, TerminalLineType.Response);
         ShowMainPanel();
     }
 
@@ -196,7 +196,7 @@ public class CaseManager : MonoBehaviour
             PrintBatteryStatus();
             terminalController.HideAllTutorialPanels();
             terminalController.ShowDataPanel(currentSubject);
-            terminalController.AddLine("Ketik 'back' untuk kembali.", TerminalLineType.System);
+            terminalController.AddLine("Type 'back' to return.", TerminalLineType.System);
             currentState = InvestState.InfoMode;
         }
         else if (cmd == "check")
@@ -207,7 +207,7 @@ public class CaseManager : MonoBehaviour
             PrintBatteryStatus();
             currentFrameIndex = 0;
             terminalController.ShowInspectPanel(currentSubject.photoFrames, currentFrameIndex);
-            terminalController.AddLine("Ketik 'right' / 'left' buat putar, 'back' buat kembali.", TerminalLineType.System);
+            terminalController.AddLine("Type 'right' / 'left' to rotate, 'back' to return.", TerminalLineType.System);
             currentState = InvestState.CheckMode;
         }
         else if (cmd == "traits")
@@ -215,14 +215,14 @@ public class CaseManager : MonoBehaviour
             // Traits = rulebook referensi, TIDAK makan baterai (bukan aksi investigasi ke subjek).
             terminalController.HideAllTutorialPanels();
             terminalController.ShowTraitsPanel(currentCase.traits);
-            terminalController.AddLine("Ketik 'back' untuk kembali.", TerminalLineType.System);
+            terminalController.AddLine("Type 'back' to return.", TerminalLineType.System);
             currentState = InvestState.TraitsMode;
         }
         else if (cmd == "approved" || cmd == "denied")
         {
             if (currentCase.forceApprovedOnly && cmd != "approved")
             {
-                terminalController.AddLine("SISTEM: Subjek ini telah diverifikasi oleh otoritas pusat. Penolakan tidak diizinkan.", TerminalLineType.Error);
+                terminalController.AddLine("SYSTEM: This subject has been verified by the central authority. Rejection is not allowed.", TerminalLineType.Error);
                 return;
             }
             ProcessVerdict(cmd == "approved");
@@ -233,18 +233,18 @@ public class CaseManager : MonoBehaviour
         }
         else
         {
-            terminalController.AddLine("Perintah tidak dikenal. Ketik ask / info / check / traits / print.", TerminalLineType.Error);
+            terminalController.AddLine("Unknown command. Type ask / info / check / traits / print.", TerminalLineType.Error);
         }
     }
 
     private void NoChance()
     {
-        terminalController.AddLine("Kesempatan habis. Ambil keputusan: approved / denied.", TerminalLineType.Error);
+        terminalController.AddLine("Attempts exhausted. Make a decision: approved / denied.", TerminalLineType.Error);
     }
 
     private void PrintBatteryStatus()
     {
-        terminalController.AddLine("[Sisa Baterai / Kesempatan: " + chancesRemaining + "/" + currentCase.maxChances + "]", TerminalLineType.Warning);
+        terminalController.AddLine("[Battery / Attempts Remaining: " + chancesRemaining + "/" + currentCase.maxChances + "]", TerminalLineType.Warning);
     }
 
     // ═══════════════════════════════════════════════
@@ -253,7 +253,7 @@ public class CaseManager : MonoBehaviour
     private void ShowAskQuestionPanel(string responseText = null)
     {
         terminalController.ShowAskQuestionPanel(currentCase.questions, responseText);
-        terminalController.AddLine("Ketik kata kunci pertanyaan yang mau ditanyakan, atau 'back' untuk batal.", TerminalLineType.System);
+        terminalController.AddLine("Type the keyword of the question you want to ask, or 'back' to cancel.", TerminalLineType.System);
     }
 
     private void HandleAskMenu(string cmd)
@@ -275,7 +275,7 @@ public class CaseManager : MonoBehaviour
         int idx = FindQuestionIndexByKeyword(cmd);
         if (idx < 0)
         {
-            terminalController.AddLine("Kata kunci tidak dikenal. Cek daftar pertanyaan di panel.", TerminalLineType.Error);
+            terminalController.AddLine("Unknown keyword. Check the question list in the panel.", TerminalLineType.Error);
             return;
         }
 
@@ -285,14 +285,14 @@ public class CaseManager : MonoBehaviour
         PrintBatteryStatus();
 
         CaseQuestion q = currentCase.questions[idx];
-        terminalController.AddLine("Kamu: " + q.questionText, TerminalLineType.Input);
+        terminalController.AddLine("You: " + q.questionText, TerminalLineType.Input);
 
         if (q.useTypeTest)
         {
             pendingQuestion = q;
             string prompt = !string.IsNullOrWhiteSpace(q.typeTestPrompt) ? q.typeTestPrompt : q.questionText;
             terminalController.ShowTypeTestPanel(prompt);
-            terminalController.AddLine("Ketik ulang pertanyaan di atas untuk memanggil jawaban.", TerminalLineType.Warning);
+            terminalController.AddLine("Retype the question above to prompt an answer.", TerminalLineType.Warning);
             currentState = InvestState.TypeTestAsk;
         }
         else
@@ -342,7 +342,7 @@ public class CaseManager : MonoBehaviour
         }
         else
         {
-            terminalController.AddLine("Ketik ulang pertanyaan di atas untuk memanggil jawaban.", TerminalLineType.Error);
+            terminalController.AddLine("Retype the question above to prompt an answer.", TerminalLineType.Error);
         }
     }
 
@@ -456,7 +456,7 @@ public class CaseManager : MonoBehaviour
 
     private IEnumerator GlitchRoutine()
     {
-        terminalController.AddLine("[!!!] Sinyal terganggu...", TerminalLineType.Error);
+        terminalController.AddLine("[!!!] Signal disrupted...", TerminalLineType.Error);
 
         if (currentCase.glitchOnRotate)
         {
@@ -468,7 +468,7 @@ public class CaseManager : MonoBehaviour
             yield return new WaitForSeconds(2f);
         }
 
-        terminalController.AddLine("Sinyal kembali normal.", TerminalLineType.System);
+        terminalController.AddLine("Signal restored to normal.", TerminalLineType.System);
         glitchActive = false;
     }
 
@@ -489,14 +489,14 @@ public class CaseManager : MonoBehaviour
         if (approved)
         {
             // Approved: lanjut ke fase print seperti biasa
-            terminalController.AddLine("Keputusan telah dicatat ke sistem pusat.", TerminalLineType.Response);
-            terminalController.AddLine("Ketik 'print' untuk mencetak dokumen.", TerminalLineType.System);
+            terminalController.AddLine("Decision has been logged to the central system.", TerminalLineType.Response);
+            terminalController.AddLine("Type 'print' to print the document.", TerminalLineType.System);
             currentState = InvestState.MainMenu;
         }
         else
         {
             // Denied: minta konfirmasi sebelum exit tanpa print
-            terminalController.AddLine("Ketik 'confirm' untuk memastikan penolakan subjek ini.", TerminalLineType.Warning);
+            terminalController.AddLine("Type 'confirm' to confirm rejecting this subject.", TerminalLineType.Warning);
             currentState = InvestState.DeniedConfirm;
         }
     }
@@ -508,13 +508,13 @@ public class CaseManager : MonoBehaviour
     {
         if (cmd == "confirm")
         {
-            terminalController.AddLine("Terima kasih. Subjek telah dikembalikan. Shift berlanjut.", TerminalLineType.Response);
+            terminalController.AddLine("Thank you. Subject returned. Shift continues.", TerminalLineType.Response);
             isCaseActive = false;
             StartCoroutine(DeniedExitRoutine());
         }
         else
         {
-            terminalController.AddLine("Ketik 'confirm' untuk memastikan penolakan.", TerminalLineType.Error);
+            terminalController.AddLine("Type 'confirm' to confirm rejection.", TerminalLineType.Error);
         }
     }
 
@@ -536,12 +536,12 @@ public class CaseManager : MonoBehaviour
         if (currentCase.usePrintTypeTest)
         {
             terminalController.ShowTypeTestPanel(currentCase.printTypeTestPrompt);
-            terminalController.AddLine("Ketik ulang teks di atas untuk lanjut mencetak.", TerminalLineType.Warning);
+            terminalController.AddLine("Retype the text above to continue printing.", TerminalLineType.Warning);
             currentState = InvestState.TypeTestPrint;
         }
         else
         {
-            terminalController.AddLine("Ketik 'confirm' untuk melanjutkan pencetakan.", TerminalLineType.System);
+            terminalController.AddLine("Type 'confirm' to continue printing.", TerminalLineType.System);
             currentState = InvestState.PrintConfirm;
         }
     }
@@ -554,7 +554,7 @@ public class CaseManager : MonoBehaviour
         }
         else
         {
-            terminalController.AddLine("Ketik 'confirm' untuk melanjutkan pencetakan.", TerminalLineType.Error);
+            terminalController.AddLine("Type 'confirm' to continue printing.", TerminalLineType.Error);
         }
     }
 
@@ -575,7 +575,7 @@ public class CaseManager : MonoBehaviour
         }
         else
         {
-            terminalController.AddLine("Ketik ulang teks di atas untuk lanjut mencetak.", TerminalLineType.Error);
+            terminalController.AddLine("Retype the text above to continue printing.", TerminalLineType.Error);
         }
     }
 

@@ -127,19 +127,19 @@ public class CommandProcessorService
     private void ExecuteHelpCommand()
     {
         AddLine("=== AVAILABLE COMMANDS ===", TerminalLineType.System);
-        AddLine("help           — daftar perintah", TerminalLineType.Response);
-        AddLine("status         — cek status sistem", TerminalLineType.Response);
+        AddLine("help           — command list", TerminalLineType.Response);
+        AddLine("status         — check system status", TerminalLineType.Response);
         AddLine("fetch [id]     — ambil file subject", TerminalLineType.Response);
-        AddLine("open           — buka kasus (mode kasus)", TerminalLineType.Response);
+        AddLine("open           — open case (case mode)", TerminalLineType.Response);
         AddLine("ask            — tampilkan daftar pertanyaan", TerminalLineType.Response);
-        AddLine("info           — lihat data subjek", TerminalLineType.Response);
-        AddLine("check          — periksa foto subjek", TerminalLineType.Response);
-        AddLine("right / left    — putar foto subjek (saat check)", TerminalLineType.Response);
+        AddLine("info           — view subject data", TerminalLineType.Response);
+        AddLine("check          — inspect subject photo", TerminalLineType.Response);
+        AddLine("right / left    — rotate subject photo (when checking)", TerminalLineType.Response);
         AddLine("traits         — lihat kriteria anomali (gratis)", TerminalLineType.Response);
         AddLine("approved       — setujui subject aktif", TerminalLineType.Response);
         AddLine("denied         — tolak subject aktif", TerminalLineType.Response);
         AddLine("print          — cetak dokumen setelah verdict", TerminalLineType.Response);
-        AddLine("back           — kembali ke menu utama kasus", TerminalLineType.Response);
+        AddLine("back           — return to main case menu", TerminalLineType.Response);
         AddLine("esc            — keluar dari komputer (diam-diam)", TerminalLineType.Response);
         AddLine("clear          — bersihkan layar", TerminalLineType.Response);
         AddLine("==========================", TerminalLineType.System);
@@ -150,13 +150,13 @@ public class CommandProcessorService
         bool hasPendingSubjectBool = activeSubjectDataModel != null;
 
         AddLine("SYSTEM STATUS REPORT", TerminalLineType.System);
-        AddLine("> Koneksi database  : [OK]", TerminalLineType.Response);
+        AddLine("> Database connection: [OK]", TerminalLineType.Response);
         AddLine("> Printer           : [STANDBY]", TerminalLineType.Response);
-        AddLine("> Shift akurasi     : " + correctVerdictCountInt + " benar", TerminalLineType.Response);
-        AddLine("> Subject aktif     : " + (hasPendingSubjectBool ? activeSubjectDataModel.subjectIdString : "tidak ada"),
+        AddLine("> Shift accuracy    : " + correctVerdictCountInt + " correct", TerminalLineType.Response);
+        AddLine("> Active subject    : " + (hasPendingSubjectBool ? activeSubjectDataModel.subjectIdString : "none"),
                                                                                      TerminalLineType.Response);
         if (hasPendingSubjectBool)
-            AddLine("> Menunggu verdict untuk: " + activeSubjectDataModel.subjectIdString, TerminalLineType.Warning);
+            AddLine("> Awaiting verdict for: " + activeSubjectDataModel.subjectIdString, TerminalLineType.Warning);
     }
 
     private void ExecuteFetchCommand(string[] inputPartsArray)
@@ -174,14 +174,14 @@ public class CommandProcessorService
 
         if (foundSubject == null)
         {
-            AddLine("ERR: ID tidak ditemukan — " + requestedIdString, TerminalLineType.Error);
+            AddLine("ERR: ID not found — " + requestedIdString, TerminalLineType.Error);
             return;
         }
 
         if (attemptCountBySubjectId.TryGetValue(foundSubject.subjectIdString, out int usedAttempts)
             && usedAttempts >= MAX_ATTEMPTS_PER_SUBJECT)
         {
-            AddLine("ERR: subject " + foundSubject.subjectIdString + " sudah di-lock (gagal maksimal).", TerminalLineType.Error);
+            AddLine("ERR: subject " + foundSubject.subjectIdString + " is locked (max failures).", TerminalLineType.Error);
             return;
         }
 
@@ -191,9 +191,9 @@ public class CommandProcessorService
         AddLine(">>> FILE DITERIMA <<<", TerminalLineType.System);
         AddLine("================================", TerminalLineType.Response);
         AddLine("SUBJECT ID   : " + foundSubject.subjectIdString, TerminalLineType.Response);
-        AddLine("NAMA         : " + foundSubject.fullNameString, TerminalLineType.Response);
+        AddLine("NAME         : " + foundSubject.fullNameString, TerminalLineType.Response);
         AddLine("GENDER       : " + foundSubject.genderString, TerminalLineType.Response);
-        AddLine("TGL LAHIR    : " + foundSubject.dateOfBirthString, TerminalLineType.Response);
+        AddLine("DOB          : " + foundSubject.dateOfBirthString, TerminalLineType.Response);
         AddLine("EXP DATE     : " + foundSubject.expiryDateString, TerminalLineType.Response);
         AddLine("================================", TerminalLineType.Response);
 
@@ -201,14 +201,14 @@ public class CommandProcessorService
         if (usedAttempts > 0)
             AddLine("> Percobaan tersisa: " + remainingAttempts, TerminalLineType.Warning);
 
-        AddLine("> Periksa data & foto. Ketik approved atau denied.", TerminalLineType.Warning);
+        AddLine("> Inspect data & photo. Type approved or denied.", TerminalLineType.Warning);
     }
 
     private void ExecuteVerdictCommand(bool isApproved)
     {
         if (activeSubjectDataModel == null)
         {
-            AddLine("ERR: tidak ada subject aktif. Gunakan fetch [ID] dulu.", TerminalLineType.Error);
+            AddLine("ERR: no active subject. Use fetch [ID] first.", TerminalLineType.Error);
             return;
         }
 
@@ -220,7 +220,7 @@ public class CommandProcessorService
 
         if (isCorrectVerdict)
         {
-            AddLine("[BENAR] Verifikasi akurat.", TerminalLineType.Response);
+            AddLine("[CORRECT] Verification accurate.", TerminalLineType.Response);
             AddLine("Dokumen dicetak dan dikirim.", TerminalLineType.Response);
             correctVerdictCountInt++;
         }
@@ -254,8 +254,8 @@ public class CommandProcessorService
 
     private void ExecuteUnknownCommand(string unknownCommandString)
     {
-        AddLine("ERR: perintah tidak dikenal — \"" + unknownCommandString + "\"", TerminalLineType.Error);
-        AddLine("> Ketik help untuk daftar perintah.", TerminalLineType.System);
+        AddLine("ERR: unknown command — \"" + unknownCommandString + "\"", TerminalLineType.Error);
+        AddLine("> Type help for command list.", TerminalLineType.System);
     }
 
     private void AddLine(string textString, TerminalLineType lineTypeEnum)

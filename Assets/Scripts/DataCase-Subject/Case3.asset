@@ -13,28 +13,28 @@ MonoBehaviour:
   m_Name: Case3
   m_EditorClassIdentifier: Assembly-CSharp::CaseDefinition
   caseNumber: 3
-  caseType: 0
+  caseType: 1
   subjectId: D-003
   notificationText: New Case
   maxChances: 5
   questions:
-  - questionText: Ask About His Id
+  - questionText: what your id
     realResponse: I Think My Id is number 2
-    mimicResponse: 
+    mimicResponse: I Think My Id is number 2
     commandKeyword: ID
     useTypeTest: 1
     typeTestPrompt: Ask About His Id
     typeTestAnswer: 
   - questionText: Ask About His Name
     realResponse: Call me Nazara okay
-    mimicResponse: 
+    mimicResponse: Call me Nazara okay
     commandKeyword: Name
     useTypeTest: 1
     typeTestPrompt: Ask About His Name
     typeTestAnswer: 
-  - questionText: Ask About His Reason
-    realResponse: I just what to get the hell out of the environment
-    mimicResponse: 
+  - questionText: why do you come here
+    realResponse: im on the investigation team, i bring info for the government
+    mimicResponse: im on the investigation team, i bring info for the government
     commandKeyword: Reason
     useTypeTest: 1
     typeTestPrompt: Ask About His Reason
@@ -43,7 +43,9 @@ MonoBehaviour:
   - -Too much reasoning
   - -Not Answering The Question
   usePrintTypeTest: 1
-  printTypeTestPrompt: The More You Think The Closer It Gets
+  printTypeTestPrompt: close until above early water bring below group between change
+    night found catch house group thing between great start cover today later right
+    world along
   printTypeTestAnswer: 
   forceApprovedOnly: 0
   glitchOnRotate: 0

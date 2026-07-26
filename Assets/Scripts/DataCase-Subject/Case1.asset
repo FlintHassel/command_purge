@@ -18,14 +18,14 @@ MonoBehaviour:
   notificationText: New Case
   maxChances: 5
   questions:
-  - questionText: Ask About His Id
+  - questionText: do you remember what your id number?
     realResponse: My Id is D-001
     mimicResponse: 
     commandKeyword: ID
     useTypeTest: 1
     typeTestPrompt: Ask About His Id
     typeTestAnswer: 
-  - questionText: Ask About His Name
+  - questionText: 'what your name '
     realResponse: My Name Is DikDuko
     mimicResponse: 
     commandKeyword: Name
@@ -37,7 +37,7 @@ MonoBehaviour:
     mimicResponse: 
     commandKeyword: Reason
     useTypeTest: 1
-    typeTestPrompt: Ask About His Reason
+    typeTestPrompt: why do you come here
     typeTestAnswer: 
   traits:
   - -Weird Face
@@ -46,7 +46,9 @@ MonoBehaviour:
 
 '
   usePrintTypeTest: 1
-  printTypeTestPrompt: Look who's making you warm right now
+  printTypeTestPrompt: where carry under place until where think being quite start
+    below given where thing heart point other other hands beyond young would carry
+    since point
   printTypeTestAnswer: 
   forceApprovedOnly: 0
   glitchOnRotate: 0
